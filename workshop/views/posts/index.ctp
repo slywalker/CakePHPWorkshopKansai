@@ -9,6 +9,7 @@ echo $paginator->counter(array(
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
+	<th><?php echo $paginator->sort('user_id');?></th>
 	<th><?php echo $paginator->sort('title');?></th>
 	<th><?php echo $paginator->sort('body');?></th>
 	<th><?php echo $paginator->sort('created');?></th>
@@ -26,6 +27,9 @@ foreach ($posts as $post):
 	<tr<?php echo $class;?>>
 		<td>
 			<?php echo $post['Post']['id']; ?>
+		</td>
+		<td>
+			<?php echo $post['Post']['user_id']; ?>
 		</td>
 		<td>
 			<?php echo $post['Post']['title']; ?>

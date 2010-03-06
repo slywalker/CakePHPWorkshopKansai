@@ -4,6 +4,7 @@
  		<legend><?php __('Edit Post');?></legend>
 	<?php
 		echo $form->input('id');
+		echo $form->input('user_id');
 		echo $form->input('title');
 		echo $form->input('body');
 	?>

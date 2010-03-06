@@ -3,6 +3,7 @@
 	<fieldset>
  		<legend><?php __('Add Post');?></legend>
 	<?php
+		echo $form->input('user_id');
 		echo $form->input('title');
 		echo $form->input('body');
 	?>
