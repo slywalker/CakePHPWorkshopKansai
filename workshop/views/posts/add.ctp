@@ -6,7 +6,7 @@
 		echo $form->input('user_id');
 		echo $form->input('title');
 		echo $form->input('body');
-		echo $form->input('Tag');
+		echo $form->input('Tag', array('multiple' => 'checkbox'));
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

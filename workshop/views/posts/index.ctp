@@ -29,7 +29,7 @@ foreach ($posts as $post):
 			<?php echo $post['Post']['id']; ?>
 		</td>
 		<td>
-			<?php echo $html->link($post['User']['id'], array('controller' => 'users', 'action' => 'view', $post['User']['id'])); ?>
+			<?php echo $html->link($post['User']['username'], array('controller' => 'users', 'action' => 'view', $post['User']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $post['Post']['title']; ?>
