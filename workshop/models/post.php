@@ -18,5 +18,23 @@ class Post extends AppModel {
 		)
 	);
 
+	var $hasAndBelongsToMany = array(
+		'Tag' => array(
+			'className' => 'Tag',
+			'joinTable' => 'posts_tags',
+			'foreignKey' => 'post_id',
+			'associationForeignKey' => 'tag_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
+
 }
 ?>

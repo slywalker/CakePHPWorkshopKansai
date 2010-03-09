@@ -27,6 +27,9 @@ class PostsController extends AppController {
 				$this->Session->setFlash(__('The Post could not be saved. Please, try again.', true));
 			}
 		}
+		$tags = $this->Post->Tag->find('list');
+		$users = $this->Post->User->find('list');
+		$this->set(compact('tags', 'users'));
 	}
 
 	function edit($id = null) {
@@ -45,6 +48,9 @@ class PostsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Post->read(null, $id);
 		}
+		$tags = $this->Post->Tag->find('list');
+		$users = $this->Post->User->find('list');
+		$this->set(compact('tags','users'));
 	}
 
 	function delete($id = null) {

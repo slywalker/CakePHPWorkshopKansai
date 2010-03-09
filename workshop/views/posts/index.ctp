@@ -29,7 +29,7 @@ foreach ($posts as $post):
 			<?php echo $post['Post']['id']; ?>
 		</td>
 		<td>
-			<?php echo $post['Post']['user_id']; ?>
+			<?php echo $html->link($post['User']['id'], array('controller' => 'users', 'action' => 'view', $post['User']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $post['Post']['title']; ?>
@@ -60,5 +60,9 @@ foreach ($posts as $post):
 <div class="actions">
 	<ul>
 		<li><?php echo $html->link(__('New Post', true), array('action' => 'add')); ?></li>
+		<li><?php echo $html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $html->link(__('New User', true), array('controller' => 'users', 'action' => 'add')); ?> </li>
+		<li><?php echo $html->link(__('List Tags', true), array('controller' => 'tags', 'action' => 'index')); ?> </li>
+		<li><?php echo $html->link(__('New Tag', true), array('controller' => 'tags', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
