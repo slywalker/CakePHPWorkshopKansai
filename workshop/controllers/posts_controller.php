@@ -5,7 +5,11 @@ class PostsController extends AppController {
 	var $helpers = array('Html', 'Form');
 
 	function index() {
-		$this->Post->recursive = 0;
+		$this->paginate = array(
+			'contain' => array(
+				'User' => array('fields' => array('id', 'username')),
+			),
+		);
 		$this->set('posts', $this->paginate());
 	}
 
@@ -14,6 +18,10 @@ class PostsController extends AppController {
 			$this->Session->setFlash(__('Invalid Post', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Post->contain(array(
+			'User' => array('fields' => array('id', 'username')),
+			'Tag',
+		));
 		$this->set('post', $this->Post->read(null, $id));
 	}
 
@@ -46,6 +54,10 @@ class PostsController extends AppController {
 			}
 		}
 		if (empty($this->data)) {
+			$this->Post->contain(array(
+				'User' => array('fields' => array('id', 'username')),
+				'Tag',
+			));
 			$this->data = $this->Post->read(null, $id);
 		}
 		$tags = $this->Post->Tag->find('list');
