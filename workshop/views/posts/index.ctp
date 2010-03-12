@@ -1,7 +1,18 @@
 <div class="posts index">
 <h2><?php __('Posts');?></h2>
+<div class="actions">
+	<?php
+	$li = array();
+	$li[] = $html->link(__('All Posts', true), array());
+	foreach ($tags as $tag_id => $tag) {
+		$li[] = $html->link($tag, array('tag' => $tag_id));
+	}
+	echo $html->nestedList($li);
+	?>
+</div>
 <p>
 <?php
+$paginator->options(array('url' => $this->passedArgs));
 echo $paginator->counter(array(
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
 ));
@@ -10,6 +21,7 @@ echo $paginator->counter(array(
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('user_id');?></th>
+	<th><?php __('Tags');?></th>
 	<th><?php echo $paginator->sort('title');?></th>
 	<th><?php echo $paginator->sort('body');?></th>
 	<th><?php echo $paginator->sort('created');?></th>
@@ -30,6 +42,9 @@ foreach ($posts as $post):
 		</td>
 		<td>
 			<?php echo $html->link($post['User']['username'], array('controller' => 'users', 'action' => 'view', $post['User']['id'])); ?>
+		</td>
+		<td>
+			<?php echo implode(' ', Set::extract('/name', $post['Tag'])); ?>
 		</td>
 		<td>
 			<?php echo $post['Post']['title']; ?>
