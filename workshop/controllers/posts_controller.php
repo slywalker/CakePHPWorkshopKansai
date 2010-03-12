@@ -5,12 +5,27 @@ class PostsController extends AppController {
 	var $helpers = array('Html', 'Form');
 
 	function index() {
+		$joins = array();
+		$conditions = array();
+		if (!empty($this->passedArgs['tag'])) {
+			$joins[] = array(
+				'table' => 'posts_tags',
+				'alias' => 'PostsTag',
+				'type' => 'INNER',
+				'conditions' => array('Post.id = PostsTag.post_id'),
+			);
+			$conditions = array('PostsTag.tag_id' => $this->passedArgs['tag']);
+		}
 		$this->paginate = array(
+			'conditions' => $conditions,
+			'joins' => $joins,
 			'contain' => array(
 				'User' => array('fields' => array('id', 'username')),
 			),
 		);
 		$this->set('posts', $this->paginate());
+		$tags = $this->Post->Tag->find('list');
+		$this->set(compact('tags'));
 	}
 
 	function view($id = null) {
