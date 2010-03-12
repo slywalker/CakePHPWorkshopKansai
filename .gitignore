@@ -2,3 +2,4 @@ app/config/database.php
 app/tmp/**/*
 workshop/config/database.php
 workshop/tmp/**/*
+workshop/webroot/media/**/*
