@@ -2,7 +2,7 @@
 class PostsController extends AppController {
 
 	var $name = 'Posts';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Media.Medium');
 
 	function index() {
 		$this->paginate = array(
@@ -21,6 +21,7 @@ class PostsController extends AppController {
 		$this->Post->contain(array(
 			'User' => array('fields' => array('id', 'username')),
 			'Tag',
+			'Attachment',
 		));
 		$this->set('post', $this->Post->read(null, $id));
 	}
@@ -28,7 +29,7 @@ class PostsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Post->create();
-			if ($this->Post->save($this->data)) {
+			if ($this->Post->saveAll($this->data, array('validate' => 'first'))) {
 				$this->Session->setFlash(__('The Post has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -46,7 +47,7 @@ class PostsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->Post->save($this->data)) {
+			if ($this->Post->saveAll($this->data, array('validate' => 'first'))) {
 				$this->Session->setFlash(__('The Post has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -57,6 +58,7 @@ class PostsController extends AppController {
 			$this->Post->contain(array(
 				'User' => array('fields' => array('id', 'username')),
 				'Tag',
+				'Attachment',
 			));
 			$this->data = $this->Post->read(null, $id);
 		}

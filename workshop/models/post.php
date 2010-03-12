@@ -36,5 +36,14 @@ class Post extends AppModel {
 		)
 	);
 
+	var $hasMany = array(
+		'Attachment' => array(
+			'className' => 'Attachment',
+			'foreignKey' => 'foreign_key',
+			'conditions' => array('Attachment.model' => 'Post'),
+			'order' => array('Attachment.created' => 'DESC'),
+			'dependent' => true,
+		),
+	);
 }
 ?>

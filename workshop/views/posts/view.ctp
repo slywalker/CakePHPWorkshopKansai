@@ -31,6 +31,12 @@
 			<?php echo $post['Post']['modified']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Images'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+		<?php foreach ($post['Attachment'] as $attachment): ?>
+			<?php echo $medium->embed($medium->file('l/', $attachment), array('restrict' => array('image')));?>
+		<?php endforeach ?>
+		</dd>
 	</dl>
 </div>
 <div class="actions">

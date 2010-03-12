@@ -39,5 +39,6 @@
  * $controllerPaths = array('this path to controllers', 'second full path to controllers', 'etc...');
  *
  */
+require_once 'media.php';
 //EOF
 ?>

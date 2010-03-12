@@ -1,5 +1,5 @@
 <div class="posts form">
-<?php echo $form->create('Post');?>
+<?php echo $form->create('Post', array('type' => 'file'));?>
 	<fieldset>
  		<legend><?php __('Add Post');?></legend>
 	<?php
@@ -7,6 +7,7 @@
 		echo $form->input('title');
 		echo $form->input('body');
 		echo $form->input('Tag', array('multiple' => 'checkbox'));
+		echo $this->element('attachments', array('plugin' => 'media', 'model' => 'Post'));
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>
